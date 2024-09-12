@@ -46,7 +46,7 @@ const onDragStart = (event: DragEvent) => {
     </div>
     <div class="p-4 flex justify-between items-center">
       <span :class="priorityClass">{{ task.priority }}</span>
-      <span class="text-blue-500 font-semibold">User #: {{ task.assignees }}</span>
+      <span title="Assignee ID" class="text-blue-500 font-semibold">User #: {{ task.assignees }}</span>
     </div>
   </div>
 </template>

@@ -34,6 +34,7 @@ export const useTaskStore = defineStore("task", {
         this.tasks.push({ id: formattedTask.id, ...newTask });
       } catch (error) {
         console.error("Failed to add task:", error);
+        alert("Failed to add task, incorrect assignees id!");
       }
     },
     updateTask(updatedTask: Task) {
