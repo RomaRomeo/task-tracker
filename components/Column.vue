@@ -12,6 +12,7 @@ const emit = defineEmits<{
 }>();
 
 const taskStore = useTaskStore()
+
 const tasks = computed(() => props.filteredTasks.filter((task) => task.status === props.item.id));
 
 const editTask = (task: Task) => emit("editTask", task);
