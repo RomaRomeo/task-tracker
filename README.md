@@ -1,4 +1,5 @@
 # Task Tracker
+[Demo](https://task-tracker-eta-eight.vercel.app)
 
 A Vue 3 + Nuxt 3 project using Tailwind CSS and Pinia for state management. This project implements task management functionality with draggable tasks & filtering.
 
@@ -72,3 +73,4 @@ After building the project, you can start it in production mode with:
 ```bash
 npm run start
 ```
+
