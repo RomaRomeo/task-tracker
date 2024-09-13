@@ -3,11 +3,9 @@ export interface Task {
   title?: string;
   description?: string;
   assignees?: number;
-  status: TaskStatuses;
+  status: "todo" | "progress" | "done";
   priority: "low" | "medium" | "high";
 }
-
-export type TaskStatuses = "todo" | "progress" | "done";
 
 export interface ApiTask {
   id: number;

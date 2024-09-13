@@ -5,6 +5,16 @@ import type { Task } from "~/types/task";
 export const useTaskStore = defineStore("task", {
   state: () => ({
     tasks: [] as Task[],
+    tasksPriorities: [
+      { id: "low", label: "Low" },
+      { id: "medium", label: "Medium"},
+      { id: "high", label: "High" }
+    ] as { id: Task['priority'], label: string }[],
+    columns: [
+      { id: "todo", label: "Todo" },
+      { id: "progress", label: "In progress"},
+      { id: "done", label: "Done" }
+    ] as { id: Task['status'], label: string }[]
   }),
   actions: {
     async addTask(newTask: Task) {

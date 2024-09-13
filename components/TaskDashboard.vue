@@ -2,7 +2,6 @@
 import { useTaskStore } from "~/store/index";
 import type { Task } from "~/types/task";
 
-const columns = ["todo", "progress", "done"] as Task["status"][];
 const showForm = ref(false);
 const currentTask = ref<Task | null>(null);
 const selectedUserId = ref<number | string>("all");
@@ -10,6 +9,7 @@ const filteredTasks = ref<Task[]>([]);
 
 const taskStore = useTaskStore();
 const tasks = computed(() => taskStore.tasks);
+const columns = computed(() => taskStore.columns);
 const users = computed(() =>
   Array.from(
     new Set(tasks.value.map((task) => Number(task.assignees)).filter(Boolean))
@@ -50,7 +50,7 @@ onMounted(() => taskStore.fetchTasks());
 
 <template>
   <div class="flex flex-col p-6 bg-white rounded-lg shadow-xl">
-    <div class="flex items-center justify-between space-x-4">
+    <div class="flex items-center justify-between space-x-4 flex-wrap">
       <button
         @click="openTaskForm(null)"
         class="flex items-center justify-center bg-blue-500 text-white text-base font-medium rounded-lg shadow-md hover:bg-blue-600 transition transform hover:scale-105 px-6 py-3"
@@ -108,7 +108,7 @@ onMounted(() => taskStore.fetchTasks());
     <div class="flex overflow-x-auto gap-8 mt-8">
       <Column
         v-for="column in columns"
-        :key="column"
+        :key="column.id"
         :item="column"
         :filtered-tasks="filteredTasks"
         @editTask="openTaskForm"

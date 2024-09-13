@@ -45,7 +45,7 @@ const onDragStart = (event: DragEvent) => {
       <p class="text-gray-600 mt-1">{{ task.description }}</p>
     </div>
     <div class="p-4 flex justify-between items-center">
-      <span :class="priorityClass">{{ task.priority }}</span>
+      <span class="capitalize" :class="priorityClass">{{ task.priority }}</span>
       <span title="Assignee ID" class="text-blue-500 font-semibold">User #: {{ task.assignees }}</span>
     </div>
   </div>

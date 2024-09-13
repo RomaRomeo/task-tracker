@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useTaskStore } from "~/store/index";
 import type { Task } from "~/types/task";
 
 const props = defineProps<{
@@ -9,6 +10,10 @@ const emit = defineEmits<{
   (event: "close"): void;
   (event: "save", task: Task): void;
 }>();
+
+const taskStore = useTaskStore();
+const columns = computed(() => taskStore.columns);
+const priorities = computed(() => taskStore.tasksPriorities);
 
 const form = ref<Task>({
   id: undefined,
@@ -88,9 +93,7 @@ watch(
             v-model="form.status"
             class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 px-3 py-2"
           >
-            <option value="todo">TODO</option>
-            <option value="progress">In progress</option>
-            <option value="done">Done</option>
+            <option v-for="opt in columns" :key="opt.id" :value="opt.id">{{ opt.label }}</option>
           </select>
         </div>
         <div class="mb-4">
@@ -100,9 +103,7 @@ watch(
             v-model="form.priority"
             class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 px-3 py-2"
           >
-            <option value="high">High</option>
-            <option value="medium">Medium</option>
-            <option value="low">Low</option>
+            <option v-for="opt in priorities" :key="opt.id" :value="opt.id">{{ opt.label }}</option>
           </select>
         </div>
         <div class="flex justify-end gap-3">
